@@ -29,7 +29,7 @@ test:
   <% if ENV['CI'] %>
   adapter: mysql2
   encoding: utf8mb4
-  host: localhost
+  host: 127.0.0.1
   username: root
   password:
   <% else %>
