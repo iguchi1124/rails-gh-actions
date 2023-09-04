@@ -57,3 +57,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
+          tags: iguchi1124/rails-gh-actions-example:latest
