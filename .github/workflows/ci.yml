@@ -34,8 +34,6 @@ jobs:
           ruby-version: '3.0'
           bundler-cache: true
       - name: rspec
-        env:
-          DATABASE_URL: mysql2://root@localhost:3306/example_test
         run: |
           bundle exec rails db:migrate
           bundle exec rspec
