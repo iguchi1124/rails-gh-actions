@@ -33,8 +33,6 @@ jobs:
         with:
           ruby-version: '3.0'
           bundler-cache: true
-      - name: Health check mysql
-        run: mysql --protocol=tcp -uroot -e "SHOW DATABASES"
       - name: rspec
         env:
           DATABASE_URL: mysql2://root@localhost:3306/example_test
