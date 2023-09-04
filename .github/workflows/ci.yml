@@ -35,7 +35,7 @@ jobs:
       - name: rspec
         env:
           RAILS_ENV: test
-          RAILS_ENV: mysql2://root@127.0.0.1:3306/example_test
+          DATABASE_URL: mysql2://root@127.0.0.1:3306/example_test
         run: |
           bundle exec rails db:migrate
           bundle exec rspec
