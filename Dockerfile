@@ -8,7 +8,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN bundle install -j4
+RUN --mount=type=cache,target=/app/.bundle bundle config set path vendor/bundle
+RUN --mount=type=cache,target=/app/vendor/bundle bundle install -j4
 
 EXPOSE 8080
 
