@@ -1,0 +1,36 @@
+name: rspec
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on: push
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: example_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: ruby setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - name: rspec
+        env:
+          DATABASE_URL: mysql2://root@localhost:3306/example_test
+        run: |
+          bundle exec rails db:create
+          bundle exec rspec
