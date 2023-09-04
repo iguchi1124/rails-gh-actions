@@ -17,7 +17,6 @@ jobs:
         env:
           MYSQL_DATABASE: example_test
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_HOST: '%'
         options: >-
           --health-cmd "mysqladmin ping"
           --health-interval 10s
@@ -34,6 +33,7 @@ jobs:
         with:
           ruby-version: '3.0'
           bundler-cache: true
+      - run: touch /tmp/mysql.sock
       - name: rspec
         env:
           DATABASE_URL: mysql2://root@localhost:3306/example_test
