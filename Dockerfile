@@ -6,10 +6,13 @@ RUN --mount=type=cache,target=/var/lib/apt --mount=type=cache,target=/var/cache/
 
 WORKDIR /app
 
-COPY . /app
+RUN bundle config set path vendor/bundle
+RUN --mount=type=cache,target=/app/vendor/bundle \
+  --mount=type=bind,target=Gemfile \
+  --mount=type=bind,target=Gemfile.lock \
+  bundle install -j4
 
-RUN --mount=type=cache,target=/app/.bundle bundle config set path vendor/bundle
-RUN --mount=type=cache,target=/app/vendor/bundle bundle install -j4
+COPY . /app
 
 EXPOSE 8080
 
