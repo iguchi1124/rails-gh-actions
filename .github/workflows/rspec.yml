@@ -1,7 +1,6 @@
 name: RSpec
 
-on:
-  workflow_call:
+on: [push, workflow_call]
 
 jobs:
   rspec:
