@@ -14,4 +14,5 @@ jobs:
     uses: ./.github/workflows/rspec.yml
 
   docker:
+    needs: rspec
     uses: ./.github/workflows/docker.yml
