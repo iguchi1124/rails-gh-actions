@@ -5,6 +5,7 @@ on: workflow_call
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     services:
       mysql:
