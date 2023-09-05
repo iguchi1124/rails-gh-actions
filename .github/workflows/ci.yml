@@ -1,4 +1,4 @@
-name: rspec
+name: CI
 
 concurrency:
   group: ${{ github.ref }}
@@ -7,38 +7,7 @@ concurrency:
 on: push
 jobs:
   rspec:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_DATABASE: example_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        options: >-
-          --health-cmd "mysqladmin ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    timeout-minutes: 30
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - uses: actions/checkout@v3
-      - name: ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
-      - name: rspec
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: mysql2://root@127.0.0.1:3306/example_test
-        run: |
-          bundle exec rails db:migrate
-          bundle exec rspec
+    uses: ./.github/workflows/rspec.yml
 
   docker:
     runs-on: ubuntu-latest
