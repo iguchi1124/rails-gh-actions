@@ -5,7 +5,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push: main
+  push:
+    branches:
+      - main
 
 jobs:
   rspec:
