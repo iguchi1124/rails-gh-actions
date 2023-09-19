@@ -1,0 +1,14 @@
+name: CI
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on: pull_request
+
+jobs:
+  rspec:
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    uses: ./.github/workflows/rspec.yml
