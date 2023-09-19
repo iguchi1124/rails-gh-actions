@@ -8,7 +8,17 @@ on: pull_request
 
 jobs:
   rspec:
-    timeout-minutes: 30
     permissions:
       contents: read
     uses: ./.github/workflows/rspec.yml
+
+  example-action:
+    needs: rspec
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: iguchi1124/example-action@main
+        with:
+          message: 'Hello world'
