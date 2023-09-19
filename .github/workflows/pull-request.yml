@@ -12,3 +12,13 @@ jobs:
     permissions:
       contents: read
     uses: ./.github/workflows/rspec.yml
+
+  private-action:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: iguchi1124/private-action@main
+        with:
+          who-to-greet: 'Mona the Octocat'
