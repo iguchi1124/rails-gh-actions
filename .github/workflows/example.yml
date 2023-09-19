@@ -1,0 +1,19 @@
+name: Example
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on: workflow_dispatch
+
+jobs:
+  example-action:
+    needs: docker
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: iguchi1124/example-action@main
+        with:
+          message: 'Hello world'
