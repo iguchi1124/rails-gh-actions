@@ -16,3 +16,14 @@ jobs:
       - uses: iguchi1124/example-action@main
         with:
           message: 'Hello world'
+
+  example-action-typescript:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: iguchi1124/example-action-typescript@main
+        with:
+          message: 'Hello world'
+  
